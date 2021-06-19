@@ -9,15 +9,38 @@ function Book(title, author, numOfPages, status) {
   this.status = status;
 }
 
+Book.prototype.toggleReadStatus = function () {
+  if (this.status === 'Read') {
+    this.status = 'Unread';
+  } else if (this.status === 'Unread') {
+    this.status = 'Read';
+  }
+
+  return this.status;
+};
+
 const getTemplate = (book, bookId) => `<div class="col-6 col-md-4 col-lg-3 card p-2 book text-center" data-id=${bookId}>
     <img class="img-fluid mb-1" src="https://res.cloudinary.com/mobello/image/upload/v1622672250/soccerinfo/rails_uploads/ebfc507cc734189df779052bba7e57d6.jpg" alt="">
     <h4 class="text-success m-0">${book.title}</h4>
     <p class="m-0 fw-bolder">${book.author}</p>
     <small class="text-muted">${book.numOfPages} pages</small>
-    <small class="text-warning fw-bolder">${book.status}</small>
 
-    <button class="btn btn-danger float-end remove-book">Remove</button>
+    <button class="btn btn-info text-white btn-small toggle-read mb-1">${book.status}</button>
+    <button class="btn btn-danger btn-small remove-book">Remove</button>
     </div>`;
+
+const addToggleReadEvent = () => {
+  const readButtons = document.querySelectorAll('.toggle-read');
+
+  readButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const bookId = button.parentElement.getAttribute('data-id');
+
+      const book = myLibrary[bookId];
+      button.textContent = book.toggleReadStatus();
+    });
+  });
+};
 
 /* eslint-disable no-use-before-define */
 const displayBooks = () => {
@@ -32,6 +55,7 @@ const displayBooks = () => {
   document.querySelector('.book-list').innerHTML = bookList;
 
   addRemoveFromLibrary();
+  addToggleReadEvent();
 };
 
 const addRemoveFromLibrary = () => {
