@@ -21,7 +21,7 @@ Book.prototype.toggleReadStatus = function () {
 };
 
 const getTemplate = (book, bookId) => `<div class="col-6 col-md-4 col-lg-3 card p-2 book text-center" data-id=${bookId}>
-    <img class="img-fluid mb-1" src="/images/${images[Math.floor(Math.random() * 6)]}" alt="">
+    <img class="img-fluid mb-1" src="https://moreneecoder.github.io/library/images/${images[Math.floor(Math.random() * 6)]}" alt="#">
     <h4 class="text-success m-0">${book.title}</h4>
     <p class="m-0 fw-bolder">${book.author}</p>
     <small class="text-muted">${book.numOfPages} pages</small>
