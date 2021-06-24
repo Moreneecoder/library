@@ -10,14 +10,16 @@ function Book(title, author, numOfPages, status) {
   this.status = status;
 }
 
-Book.prototype.toggleReadStatus = function () {
-  if (this.status === 'Read') {
-    this.status = 'Unread';
-  } else if (this.status === 'Unread') {
-    this.status = 'Read';
-  }
+Book.prototype = {
+  toggleReadStatus() {
+    if (this.status === 'Read') {
+      this.status = 'Unread';
+    } else if (this.status === 'Unread') {
+      this.status = 'Read';
+    }
 
-  return this.status;
+    return this.status;
+  },
 };
 
 const getTemplate = (book, bookId) => `<div class="col-6 col-md-4 col-lg-3 card p-2 book text-center" data-id=${bookId}>
