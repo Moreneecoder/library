@@ -3,7 +3,7 @@
 const myLibrary = [];
 const images = ['book1.svg', 'book2.svg', 'book3.svg', 'book4.svg', 'book5.svg', 'book6.svg'];
 
-function Book(title, author, numOfPages, status) {
+const Book = (title, author, numOfPages, status) => {
   const toggleReadStatus = () => {
     if (status === 'Read') {
       status = 'Unread';
@@ -17,7 +17,7 @@ function Book(title, author, numOfPages, status) {
   return {
     title, author, numOfPages, status, toggleReadStatus,
   };
-}
+};
 
 const getTemplate = (book, bookId) => `<div class="col-6 col-md-4 col-lg-3 card p-2 book text-center" data-id=${bookId}>
     <img class="img-fluid mb-1" src="https://moreneecoder.github.io/library/images/${images[Math.floor(Math.random() * 6)]}" alt="#">
