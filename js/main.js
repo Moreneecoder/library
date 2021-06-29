@@ -3,23 +3,20 @@
 const myLibrary = [];
 const images = ['book1.svg', 'book2.svg', 'book3.svg', 'book4.svg', 'book5.svg', 'book6.svg'];
 
-function Book(title, author, numOfPages, status) {
-  this.title = title;
-  this.author = author;
-  this.numOfPages = numOfPages;
-  this.status = status;
-}
-
-Book.prototype = {
-  toggleReadStatus() {
-    if (this.status === 'Read') {
-      this.status = 'Unread';
-    } else if (this.status === 'Unread') {
-      this.status = 'Read';
+const Book = (title, author, numOfPages, status) => {
+  const toggleReadStatus = () => {
+    if (status === 'Read') {
+      status = 'Unread';
+    } else if (status === 'Unread') {
+      status = 'Read';
     }
 
-    return this.status;
-  },
+    return status;
+  };
+
+  return {
+    title, author, numOfPages, status, toggleReadStatus,
+  };
 };
 
 const getTemplate = (book, bookId) => `<div class="col-6 col-md-4 col-lg-3 card p-2 book text-center" data-id=${bookId}>
@@ -96,7 +93,7 @@ form.addEventListener('submit', (e) => {
   const numOfPages = document.querySelector('#numOfPages');
   const checkBox = document.querySelector('#read-check');
 
-  const book = new Book(title.value, author.value, numOfPages.value, checked(checkBox));
+  const book = Book(title.value, author.value, numOfPages.value, checked(checkBox));
   addToLibrary(book);
 
   form.reset();
