@@ -3,21 +3,24 @@
 const myLibrary = [];
 const images = ['book1.svg', 'book2.svg', 'book3.svg', 'book4.svg', 'book5.svg', 'book6.svg'];
 
-const Book = (title, author, numOfPages, status) => {
-  const toggleReadStatus = () => {
-    if (status === 'Read') {
-      status = 'Unread';
-    } else if (status === 'Unread') {
-      status = 'Read';
+class Book {
+  constructor(title, author, numOfPages, status) {
+    this.title = title;
+    this.author = author;
+    this.numOfPages = numOfPages;
+    this.status = status;
+  }
+
+  toggleReadStatus() {
+    if (this.status === 'Read') {
+      this.status = 'Unread';
+    } else if (this.status === 'Unread') {
+      this.status = 'Read';
     }
 
-    return status;
-  };
-
-  return {
-    title, author, numOfPages, status, toggleReadStatus,
-  };
-};
+    return this.status;
+  }
+}
 
 const getTemplate = (book, bookId) => `<div class="col-6 col-md-4 col-lg-3 card p-2 book text-center" data-id=${bookId}>
     <img class="img-fluid mb-1" src="https://moreneecoder.github.io/library/images/${images[Math.floor(Math.random() * 6)]}" alt="#">
@@ -93,7 +96,7 @@ form.addEventListener('submit', (e) => {
   const numOfPages = document.querySelector('#numOfPages');
   const checkBox = document.querySelector('#read-check');
 
-  const book = Book(title.value, author.value, numOfPages.value, checked(checkBox));
+  const book = new Book(title.value, author.value, numOfPages.value, checked(checkBox));
   addToLibrary(book);
 
   form.reset();
