@@ -1,5 +1,3 @@
-/* eslint no-use-before-define: ["error", { "functions": false }] */
-
 const myLibrary = [];
 const images = ['book1.svg', 'book2.svg', 'book3.svg', 'book4.svg', 'book5.svg', 'book6.svg'];
 
